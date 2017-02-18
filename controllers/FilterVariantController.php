@@ -63,6 +63,8 @@ class FilterVariantController extends Controller
                 $json['value'] = $have->value;
                 $json['id'] = $have->id;
                 $json['new'] = false;
+                
+                return $this->redirect(['/filter/filter/update', 'id' => $have->filter_id]);
             //Если варианта нет, создаем
             } else {
                 if ($model->load(yii::$app->request->post()) && $model->save()) {
@@ -75,7 +77,7 @@ class FilterVariantController extends Controller
                 }
             }
             
-            return json_encode($json);
+            return $this->redirect(['/filter/filter/update', 'id' => $model->filter_id]);
         }
     }
 
